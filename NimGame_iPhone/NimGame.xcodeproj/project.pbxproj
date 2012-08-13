@@ -1,0 +1,306 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		69FCF57313F3FC4200332B23 /* Bildschirmfoto 2011-08-11 um 14.00.10.png in Resources */ = {isa = PBXBuildFile; fileRef = 69FCF57213F3FC4200332B23 /* Bildschirmfoto 2011-08-11 um 14.00.10.png */; };
+		69FF27A813F3D20400AA35E6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69FF27A713F3D20400AA35E6 /* UIKit.framework */; };
+		69FF27AA13F3D20400AA35E6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69FF27A913F3D20400AA35E6 /* Foundation.framework */; };
+		69FF27AC13F3D20400AA35E6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69FF27AB13F3D20400AA35E6 /* CoreGraphics.framework */; };
+		69FF27B213F3D20400AA35E6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 69FF27B013F3D20400AA35E6 /* InfoPlist.strings */; };
+		69FF27B513F3D20400AA35E6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 69FF27B413F3D20400AA35E6 /* main.m */; };
+		69FF27B813F3D20400AA35E6 /* NimGameAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 69FF27B713F3D20400AA35E6 /* NimGameAppDelegate.m */; };
+		69FF27BB13F3D20400AA35E6 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69FF27B913F3D20400AA35E6 /* MainWindow.xib */; };
+		69FF27BE13F3D20400AA35E6 /* NimGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69FF27BD13F3D20400AA35E6 /* NimGameViewController.m */; };
+		69FF27C113F3D20400AA35E6 /* NimGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69FF27BF13F3D20400AA35E6 /* NimGameViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		69FCF57213F3FC4200332B23 /* Bildschirmfoto 2011-08-11 um 14.00.10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Bildschirmfoto 2011-08-11 um 14.00.10.png"; sourceTree = "<group>"; };
+		69FF27A313F3D20400AA35E6 /* NimGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NimGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		69FF27A713F3D20400AA35E6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		69FF27A913F3D20400AA35E6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		69FF27AB13F3D20400AA35E6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		69FF27AF13F3D20400AA35E6 /* NimGame-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NimGame-Info.plist"; sourceTree = "<group>"; };
+		69FF27B113F3D20400AA35E6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		69FF27B313F3D20400AA35E6 /* NimGame-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NimGame-Prefix.pch"; sourceTree = "<group>"; };
+		69FF27B413F3D20400AA35E6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		69FF27B613F3D20400AA35E6 /* NimGameAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NimGameAppDelegate.h; sourceTree = "<group>"; };
+		69FF27B713F3D20400AA35E6 /* NimGameAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NimGameAppDelegate.m; sourceTree = "<group>"; };
+		69FF27BA13F3D20400AA35E6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		69FF27BC13F3D20400AA35E6 /* NimGameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NimGameViewController.h; sourceTree = "<group>"; };
+		69FF27BD13F3D20400AA35E6 /* NimGameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NimGameViewController.m; sourceTree = "<group>"; };
+		69FF27C013F3D20400AA35E6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/NimGameViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		69FF27A013F3D20400AA35E6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				69FF27A813F3D20400AA35E6 /* UIKit.framework in Frameworks */,
+				69FF27AA13F3D20400AA35E6 /* Foundation.framework in Frameworks */,
+				69FF27AC13F3D20400AA35E6 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		69FF279813F3D20400AA35E6 = {
+			isa = PBXGroup;
+			children = (
+				69FCF57213F3FC4200332B23 /* Bildschirmfoto 2011-08-11 um 14.00.10.png */,
+				69FF27AD13F3D20400AA35E6 /* NimGame */,
+				69FF27A613F3D20400AA35E6 /* Frameworks */,
+				69FF27A413F3D20400AA35E6 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		69FF27A413F3D20400AA35E6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				69FF27A313F3D20400AA35E6 /* NimGame.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		69FF27A613F3D20400AA35E6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				69FF27A713F3D20400AA35E6 /* UIKit.framework */,
+				69FF27A913F3D20400AA35E6 /* Foundation.framework */,
+				69FF27AB13F3D20400AA35E6 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		69FF27AD13F3D20400AA35E6 /* NimGame */ = {
+			isa = PBXGroup;
+			children = (
+				69FF27B613F3D20400AA35E6 /* NimGameAppDelegate.h */,
+				69FF27B713F3D20400AA35E6 /* NimGameAppDelegate.m */,
+				69FF27B913F3D20400AA35E6 /* MainWindow.xib */,
+				69FF27BC13F3D20400AA35E6 /* NimGameViewController.h */,
+				69FF27BD13F3D20400AA35E6 /* NimGameViewController.m */,
+				69FF27BF13F3D20400AA35E6 /* NimGameViewController.xib */,
+				69FF27AE13F3D20400AA35E6 /* Supporting Files */,
+			);
+			path = NimGame;
+			sourceTree = "<group>";
+		};
+		69FF27AE13F3D20400AA35E6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				69FF27AF13F3D20400AA35E6 /* NimGame-Info.plist */,
+				69FF27B013F3D20400AA35E6 /* InfoPlist.strings */,
+				69FF27B313F3D20400AA35E6 /* NimGame-Prefix.pch */,
+				69FF27B413F3D20400AA35E6 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		69FF27A213F3D20400AA35E6 /* NimGame */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 69FF27C413F3D20400AA35E6 /* Build configuration list for PBXNativeTarget "NimGame" */;
+			buildPhases = (
+				69FF279F13F3D20400AA35E6 /* Sources */,
+				69FF27A013F3D20400AA35E6 /* Frameworks */,
+				69FF27A113F3D20400AA35E6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NimGame;
+			productName = NimGame;
+			productReference = 69FF27A313F3D20400AA35E6 /* NimGame.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		69FF279A13F3D20400AA35E6 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 69FF279D13F3D20400AA35E6 /* Build configuration list for PBXProject "NimGame" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 69FF279813F3D20400AA35E6;
+			productRefGroup = 69FF27A413F3D20400AA35E6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				69FF27A213F3D20400AA35E6 /* NimGame */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		69FF27A113F3D20400AA35E6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				69FF27B213F3D20400AA35E6 /* InfoPlist.strings in Resources */,
+				69FF27BB13F3D20400AA35E6 /* MainWindow.xib in Resources */,
+				69FF27C113F3D20400AA35E6 /* NimGameViewController.xib in Resources */,
+				69FCF57313F3FC4200332B23 /* Bildschirmfoto 2011-08-11 um 14.00.10.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		69FF279F13F3D20400AA35E6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				69FF27B513F3D20400AA35E6 /* main.m in Sources */,
+				69FF27B813F3D20400AA35E6 /* NimGameAppDelegate.m in Sources */,
+				69FF27BE13F3D20400AA35E6 /* NimGameViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		69FF27B013F3D20400AA35E6 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				69FF27B113F3D20400AA35E6 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		69FF27B913F3D20400AA35E6 /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				69FF27BA13F3D20400AA35E6 /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		69FF27BF13F3D20400AA35E6 /* NimGameViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				69FF27C013F3D20400AA35E6 /* en */,
+			);
+			name = NimGameViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		69FF27C213F3D20400AA35E6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		69FF27C313F3D20400AA35E6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		69FF27C513F3D20400AA35E6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					armv6,
+					"$(ARCHS_STANDARD_32_BIT)",
+				);
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "NimGame/NimGame-Prefix.pch";
+				INFOPLIST_FILE = "NimGame/NimGame-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		69FF27C613F3D20400AA35E6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					armv6,
+					"$(ARCHS_STANDARD_32_BIT)",
+				);
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "NimGame/NimGame-Prefix.pch";
+				INFOPLIST_FILE = "NimGame/NimGame-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		69FF279D13F3D20400AA35E6 /* Build configuration list for PBXProject "NimGame" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				69FF27C213F3D20400AA35E6 /* Debug */,
+				69FF27C313F3D20400AA35E6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		69FF27C413F3D20400AA35E6 /* Build configuration list for PBXNativeTarget "NimGame" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				69FF27C513F3D20400AA35E6 /* Debug */,
+				69FF27C613F3D20400AA35E6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 69FF279A13F3D20400AA35E6 /* Project object */;
+}
