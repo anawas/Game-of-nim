@@ -22,10 +22,14 @@
 @property (nonatomic, retain) IBOutlet UILabel *numOfCoinsLabel;
 @property (nonatomic, retain) IBOutlet UILabel *currentPlayerTakesLabel;
 @property (nonatomic, assign) UIView *coinView;
+@property (retain, nonatomic) IBOutlet UISwipeGestureRecognizer *swipe_right_GestureRecognizer;
+@property (retain, nonatomic) IBOutlet UISwipeGestureRecognizer *swipe_left_GestureRecognizer;
+@property (retain, nonatomic) IBOutlet UISwipeGestureRecognizer *swipe_up_GestureRecognizer;
+@property (retain, nonatomic) IBOutlet UISwipeGestureRecognizer *swipe_down_GestureRecognizer;
 
 - (IBAction)playerSelectedCoins:(id)sender;
 - (IBAction)resetGame:(id)sender;
-
+- (IBAction)handleSwipeGesture:(UISwipeGestureRecognizer *)sender;
 - (void)computerMove;
 - (void)updateGame;
 @end

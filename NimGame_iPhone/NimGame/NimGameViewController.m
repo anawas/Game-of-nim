@@ -11,6 +11,10 @@
 #define DIVISOR 4
 
 @implementation NimGameViewController
+@synthesize swipe_right_GestureRecognizer;
+@synthesize swipe_left_GestureRecognizer;
+@synthesize swipe_up_GestureRecognizer;
+@synthesize swipe_down_GestureRecognizer;
 
 @synthesize numOfCoinsLabel, currentPlayerTakesLabel, coinView;
 
@@ -20,6 +24,10 @@
     currentPlayerTakesLabel = nil;
     [coinReversFilename release];
     [coinAversFilename release];
+    [swipe_right_GestureRecognizer release];
+    [swipe_left_GestureRecognizer release];
+    [swipe_up_GestureRecognizer release];
+    [swipe_down_GestureRecognizer release];
     [super dealloc];
 }
 
@@ -70,12 +78,40 @@
 
 }
 
+- (IBAction)handleSwipeGesture:(UISwipeGestureRecognizer *)sender {
+    NSString *message;
+    
+    switch(sender.direction) {
+        case UISwipeGestureRecognizerDirectionRight:
+            message = @"Swiped right";
+            break;
+        case  UISwipeGestureRecognizerDirectionLeft:
+            message = @"Swiped left";
+            break;
+        case UISwipeGestureRecognizerDirectionUp:
+            message = @"Swiped up";
+            break;
+        case UISwipeGestureRecognizerDirectionDown:
+            message = @"Swiped down";
+            break;
+    }
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Gesture"
+                                                    message:message
+                                                   delegate:nil                                              
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil, nil];
+    [alert show];
+
+
+}
+
 #pragma mark - View lifecycle
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     coinView = [[UIView alloc] initWithFrame:CGRectMake(0, 50, 200, 200)];
     coinAversFilename = [[NSBundle mainBundle]pathForResource:@"coin_avers" ofType:@"png"];
     [coinAversFilename retain];
@@ -86,6 +122,10 @@
 
 - (void)viewDidUnload
 {
+    [self setSwipe_right_GestureRecognizer:nil];
+    [self setSwipe_left_GestureRecognizer:nil];
+    [self setSwipe_up_GestureRecognizer:nil];
+    [self setSwipe_down_GestureRecognizer:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -117,7 +157,7 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Spielende"
                                                         message:[NSString stringWithFormat:@"%@ das Spiel!", winner]
                                                        delegate:nil                                              
-                                               cancelButtonTitle:@"OK"
+                                              cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil, nil];
         [alert show];        
         return;
