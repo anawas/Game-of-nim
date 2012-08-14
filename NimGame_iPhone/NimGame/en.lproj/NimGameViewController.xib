@@ -193,10 +193,10 @@
 			<object class="IBUISwipeGestureRecognizer" id="60740690">
 				<int key="IBUIDirection">2</int>
 			</object>
-			<object class="IBUISwipeGestureRecognizer" id="1068699824">
+			<object class="IBUISwipeGestureRecognizer" id="724236095">
 				<int key="IBUIDirection">4</int>
 			</object>
-			<object class="IBUISwipeGestureRecognizer" id="556238467">
+			<object class="IBUISwipeGestureRecognizer" id="68906871">
 				<int key="IBUIDirection">8</int>
 			</object>
 		</object>
@@ -247,7 +247,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">swipe_up_GestureRecognizer</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="1068699824"/>
+						<reference key="destination" ref="724236095"/>
 					</object>
 					<int key="connectionID">45</int>
 				</object>
@@ -255,9 +255,17 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">swipe_down_GestureRecognizer</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="556238467"/>
+						<reference key="destination" ref="68906871"/>
 					</object>
 					<int key="connectionID">48</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">currentPlayer</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="288911017"/>
+					</object>
+					<int key="connectionID">54</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletCollectionConnection" key="connection">
@@ -283,7 +291,7 @@
 					<object class="IBCocoaTouchOutletCollectionConnection" key="connection">
 						<string key="label">gestureRecognizers</string>
 						<reference key="source" ref="774585933"/>
-						<reference key="destination" ref="1068699824"/>
+						<reference key="destination" ref="724236095"/>
 						<string key="cachedDesigntimeCollectionClassName">NSArray</string>
 						<bool key="addsContentToExistingCollection">YES</bool>
 					</object>
@@ -293,7 +301,7 @@
 					<object class="IBCocoaTouchOutletCollectionConnection" key="connection">
 						<string key="label">gestureRecognizers</string>
 						<reference key="source" ref="774585933"/>
-						<reference key="destination" ref="556238467"/>
+						<reference key="destination" ref="68906871"/>
 						<string key="cachedDesigntimeCollectionClassName">NSArray</string>
 						<bool key="addsContentToExistingCollection">YES</bool>
 					</object>
@@ -326,7 +334,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">handleSwipeGesture:</string>
-						<reference key="source" ref="1068699824"/>
+						<reference key="source" ref="724236095"/>
 						<reference key="destination" ref="372490531"/>
 					</object>
 					<int key="connectionID">46</int>
@@ -334,7 +342,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">handleSwipeGesture:</string>
-						<reference key="source" ref="556238467"/>
+						<reference key="source" ref="68906871"/>
 						<reference key="destination" ref="372490531"/>
 					</object>
 					<int key="connectionID">49</int>
@@ -425,12 +433,12 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">44</int>
-						<reference key="object" ref="1068699824"/>
+						<reference key="object" ref="724236095"/>
 						<reference key="parent" ref="0"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">47</int>
-						<reference key="object" ref="556238467"/>
+						<reference key="object" ref="68906871"/>
 						<reference key="parent" ref="0"/>
 					</object>
 				</object>
@@ -488,7 +496,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">53</int>
+			<int key="maxID">54</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -539,6 +547,7 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>currentPlayer</string>
 							<string>currentPlayerTakesLabel</string>
 							<string>numOfCoinsLabel</string>
 							<string>swipe_down_GestureRecognizer</string>
@@ -548,6 +557,7 @@
 						</object>
 						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>UILabel</string>
 							<string>UILabel</string>
 							<string>UILabel</string>
 							<string>UISwipeGestureRecognizer</string>
@@ -560,6 +570,7 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>currentPlayer</string>
 							<string>currentPlayerTakesLabel</string>
 							<string>numOfCoinsLabel</string>
 							<string>swipe_down_GestureRecognizer</string>
@@ -569,6 +580,10 @@
 						</object>
 						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBToOneOutletInfo">
+								<string key="name">currentPlayer</string>
+								<string key="candidateClassName">UILabel</string>
+							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">currentPlayerTakesLabel</string>
 								<string key="candidateClassName">UILabel</string>

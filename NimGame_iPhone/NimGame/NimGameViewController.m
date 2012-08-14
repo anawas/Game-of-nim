@@ -9,8 +9,10 @@
 #import "NimGameViewController.h"
 
 #define DIVISOR 4
+#define OUTOFSCREEN 900.0F
 
 @implementation NimGameViewController
+@synthesize currentPlayer;
 @synthesize swipe_right_GestureRecognizer;
 @synthesize swipe_left_GestureRecognizer;
 @synthesize swipe_up_GestureRecognizer;
@@ -28,6 +30,7 @@
     [swipe_left_GestureRecognizer release];
     [swipe_up_GestureRecognizer release];
     [swipe_down_GestureRecognizer release];
+    [currentPlayer release];
     [super dealloc];
 }
 
@@ -46,7 +49,7 @@
     self.numOfCoinsLabel.text = [NSString stringWithFormat:@"%d", numOfCoins];
     self.currentPlayerTakesLabel.text = @"0";
     
-
+    
     [coinView retain];
     NSArray *coinSubviewArray = [coinView subviews];
     for (int i = 0; i < [coinSubviewArray count]; i++) {
@@ -63,7 +66,7 @@
         } else {
             coin = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:coinReversFilename]];        
         }
-        coin.tag = i;
+        coin.tag = i+1;
         CGRect coinSize = [coin frame];
         CGPoint ulc = CGPointMake(viewFrame.size.width/2 + rand()%100, viewFrame.size.height/2+rand()%100);
         
@@ -75,34 +78,76 @@
     }
     [[self view] addSubview:coinView];
     [coinView release];
-
+    
 }
 
 - (IBAction)handleSwipeGesture:(UISwipeGestureRecognizer *)sender {
     NSString *message;
     
+    if (!humanMove) {
+        [self displayMessage:@"Sie sind nicht an der Reihe"];
+        return;
+    }
+    
+    if (coinsTaken == 3) {
+        [self displayMessage:@"Sie können nur 1, 2 oder 3 Münzen nehmen!"];
+        return;
+        
+    }
+    
+    NSArray *coinSubviews = [coinView subviews];
+    
     switch(sender.direction) {
         case UISwipeGestureRecognizerDirectionRight:
             message = @"Swiped right";
+            for (UIImageView *coin in coinSubviews) {
+                if (coin.tag == numOfCoins) {
+                    coin.center = CGPointMake(OUTOFSCREEN, 0.0f);
+                    [coin removeFromSuperview];
+                    break;
+                }
+            }
+            
             break;
         case  UISwipeGestureRecognizerDirectionLeft:
             message = @"Swiped left";
+            for (UIImageView *coin in coinSubviews) {
+                if (coin.tag == numOfCoins) {
+                    coin.center = CGPointMake(-OUTOFSCREEN, 0.0f);
+                    [coin removeFromSuperview];
+                    break;
+                }
+            }
             break;
         case UISwipeGestureRecognizerDirectionUp:
             message = @"Swiped up";
-            break;
+            for (UIImageView *coin in coinSubviews) {
+                if (coin.tag == numOfCoins) {
+                    coin.center = CGPointMake(-OUTOFSCREEN, 0.0f);
+                    [coin removeFromSuperview];
+                    break;
+                }
+            }
         case UISwipeGestureRecognizerDirectionDown:
             message = @"Swiped down";
+            for (UIImageView *coin in coinSubviews) {
+                if (coin.tag == numOfCoins) {
+                    coin.center = CGPointMake(-OUTOFSCREEN, 0.0f);
+                    [coin removeFromSuperview];
+                    break;
+                }
+            }
             break;
     }
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Gesture"
-                                                    message:message
-                                                   delegate:nil                                              
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil, nil];
-    [alert show];
-
-
+    
+    ++coinsTaken;
+    --numOfCoins;
+    self.currentPlayerTakesLabel.text = [[NSNumber numberWithInteger:coinsTaken] stringValue];    
+    self.numOfCoinsLabel.text = [[NSNumber numberWithInteger:numOfCoins] stringValue];
+    
+    if (coinsTaken == 3) {
+        [self updateGame];
+    }
 }
 
 #pragma mark - View lifecycle
@@ -117,7 +162,9 @@
     [coinAversFilename retain];
     coinReversFilename = [[NSBundle mainBundle]pathForResource:@"coin_revers" ofType:@"png"];
     [coinReversFilename retain];
-    [self resetGame:self];    
+    currentPlayer.text = @"Sie nehmen";
+    [self resetGame:self];
+    humanMove = YES;
 }
 
 - (void)viewDidUnload
@@ -126,6 +173,7 @@
     [self setSwipe_left_GestureRecognizer:nil];
     [self setSwipe_up_GestureRecognizer:nil];
     [self setSwipe_down_GestureRecognizer:nil];
+    [self setCurrentPlayer:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -144,8 +192,8 @@
 }
 
 - (void)updateGame {
-    numOfCoins = numOfCoins - coinsTaken;
     self.numOfCoinsLabel.text = [NSString stringWithFormat:@"%d", numOfCoins];
+    
     if (numOfCoins == 0) {
         NSString *winner;
         if (humanMove) {  
@@ -159,12 +207,14 @@
                                                        delegate:nil                                              
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil, nil];
-        [alert show];        
+        [alert show];
         return;
     }
-
-    if (humanMove)
+    
+    if (humanMove) {
         [self computerMove];
+    }
+    coinsTaken = 0;
     
 }
 
@@ -178,10 +228,22 @@
     } else {
         coinsTaken = numOfCoins % DIVISOR;
     } 
-    
-    self.currentPlayerTakesLabel.text = [NSString stringWithFormat:@"%d", coinsTaken];
+       
+    numOfCoins -= coinsTaken;
+    self.currentPlayer.text = @"iPod nimmt";
+    self.currentPlayerTakesLabel.text = [[NSNumber numberWithInteger:coinsTaken] stringValue];
     humanMove = NO;
     [self updateGame];
+    humanMove = YES;
 }
 
+
+- (void)displayMessage:(NSString *)message {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
+                                                    message:message
+                                                   delegate:nil                                              
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil, nil];
+    [alert show];
+}
 @end
