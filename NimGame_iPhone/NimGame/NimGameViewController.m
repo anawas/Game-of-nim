@@ -12,12 +12,12 @@
 
 @implementation NimGameViewController
 
-@synthesize numOfCoinsLabel, computerTakesLabel;
+@synthesize numOfCoinsLabel, currentPlayerTakesLabel, coinView;
 
 - (void)dealloc
 {
     numOfCoinsLabel = nil;
-    computerTakesLabel = nil;
+    currentPlayerTakesLabel = nil;
     [super dealloc];
 }
 
@@ -34,8 +34,37 @@
     coinsTaken = 0;
     numOfCoins = (rand() % 15) + 10; 
     self.numOfCoinsLabel.text = [NSString stringWithFormat:@"%d", numOfCoins];
-    self.computerTakesLabel.text = @"0";
-    playerTakesControl.enabled = YES;
+    self.currentPlayerTakesLabel.text = @"0";
+    
+
+    [coinView retain];
+    NSArray *coinSubviewArray = [coinView subviews];
+    for (int i = 0; i < [coinSubviewArray count]; i++) {
+        [[coinSubviewArray objectAtIndex:i] removeFromSuperview];
+    }
+    [coinView removeFromSuperview];
+    
+    CGRect viewFrame = [[self view] frame];
+    
+    for (int i = 0; i < numOfCoins; i++) {
+        UIImageView *coin;
+        if (rand() % 2) {
+            coin = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:@"/Users/wassmer/Development/sandbox/game-of-nim/Resources/coin_avers.png"]];
+        } else {
+            coin = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:@"/Users/wassmer/Development/sandbox/game-of-nim/Resources/coin_revers.png"]];        
+        }
+        coin.tag = i;
+        CGRect coinSize = [coin frame];
+        CGPoint ulc = CGPointMake(viewFrame.size.width/2 + rand()%100, viewFrame.size.height/2+rand()%100);
+        
+        ulc.x -= coinSize.size.width/2.0f;
+        ulc.y -= coinSize.size.height/2.0f;
+        [coin setCenter:ulc];
+        [coinView addSubview:coin];
+        [coin release];
+    }
+    [[self view] addSubview:coinView];
+    [coinView release];
 
 }
 
@@ -45,11 +74,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [playerTakesControl addTarget:self
-                           action:@selector(playerSelectedCoins:) 
-                 forControlEvents:UIControlEventValueChanged];
-    [playerTakesControl setSelectedSegmentIndex:UISegmentedControlNoSegment];
-    [self resetGame:self];
+    coinView = [[UIView alloc] initWithFrame:CGRectMake(0, 50, 200, 200)];
+    [self resetGame:self];    
 }
 
 - (void)viewDidUnload
@@ -82,7 +108,6 @@
             winner = @"iPod gewinnt";
         }
         
-        playerTakesControl.enabled = NO;
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Spielende"
                                                         message:[NSString stringWithFormat:@"%@ das Spiel!", winner]
                                                        delegate:nil                                              
@@ -108,7 +133,7 @@
         coinsTaken = numOfCoins % DIVISOR;
     } 
     
-    self.computerTakesLabel.text = [NSString stringWithFormat:@"%d", coinsTaken];
+    self.currentPlayerTakesLabel.text = [NSString stringWithFormat:@"%d", coinsTaken];
     humanMove = NO;
     [self updateGame];
 }

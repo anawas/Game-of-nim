@@ -10,17 +10,17 @@
 
 @interface NimGameViewController : UIViewController {
     UILabel *numOfCoinsLabel;
-    UILabel *computerTakesLabel;
-    
-    IBOutlet UISegmentedControl *playerTakesControl;
-    
+    UILabel *currentPlayerTakesLabel;
+    UIImageView *coinAvers, *coinRevers;
+    UIView *coinView;
     NSUInteger numOfCoins;
     NSUInteger coinsTaken;
     BOOL humanMove;
 }
 
 @property (nonatomic, retain) IBOutlet UILabel *numOfCoinsLabel;
-@property (nonatomic, retain) IBOutlet UILabel *computerTakesLabel;
+@property (nonatomic, retain) IBOutlet UILabel *currentPlayerTakesLabel;
+@property (nonatomic, assign) UIView *coinView;
 
 - (IBAction)playerSelectedCoins:(id)sender;
 - (IBAction)resetGame:(id)sender;
