@@ -18,6 +18,8 @@
 {
     numOfCoinsLabel = nil;
     currentPlayerTakesLabel = nil;
+    [coinReversFilename release];
+    [coinAversFilename release];
     [super dealloc];
 }
 
@@ -49,9 +51,9 @@
     for (int i = 0; i < numOfCoins; i++) {
         UIImageView *coin;
         if (rand() % 2) {
-            coin = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:@"/Users/wassmer/Development/sandbox/game-of-nim/Resources/coin_avers.png"]];
+            coin = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:coinAversFilename]];
         } else {
-            coin = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:@"/Users/wassmer/Development/sandbox/game-of-nim/Resources/coin_revers.png"]];        
+            coin = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:coinReversFilename]];        
         }
         coin.tag = i;
         CGRect coinSize = [coin frame];
@@ -75,6 +77,10 @@
 {
     [super viewDidLoad];
     coinView = [[UIView alloc] initWithFrame:CGRectMake(0, 50, 200, 200)];
+    coinAversFilename = [[NSBundle mainBundle]pathForResource:@"coin_avers" ofType:@"png"];
+    [coinAversFilename retain];
+    coinReversFilename = [[NSBundle mainBundle]pathForResource:@"coin_revers" ofType:@"png"];
+    [coinReversFilename retain];
     [self resetGame:self];    
 }
 

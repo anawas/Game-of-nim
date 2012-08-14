@@ -15,6 +15,7 @@
     UIView *coinView;
     NSUInteger numOfCoins;
     NSUInteger coinsTaken;
+    NSString *coinAversFilename, *coinReversFilename;
     BOOL humanMove;
 }
 
