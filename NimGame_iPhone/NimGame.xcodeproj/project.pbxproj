@@ -17,6 +17,8 @@
 		69FF27BB13F3D20400AA35E6 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69FF27B913F3D20400AA35E6 /* MainWindow.xib */; };
 		69FF27BE13F3D20400AA35E6 /* NimGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69FF27BD13F3D20400AA35E6 /* NimGameViewController.m */; };
 		69FF27C113F3D20400AA35E6 /* NimGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69FF27BF13F3D20400AA35E6 /* NimGameViewController.xib */; };
+		DBCC365815DA1C32003E6AB7 /* coin_avers.png in Resources */ = {isa = PBXBuildFile; fileRef = DBCC365615DA1C32003E6AB7 /* coin_avers.png */; };
+		DBCC365915DA1C32003E6AB7 /* coin_revers.png in Resources */ = {isa = PBXBuildFile; fileRef = DBCC365715DA1C32003E6AB7 /* coin_revers.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +37,8 @@
 		69FF27BC13F3D20400AA35E6 /* NimGameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NimGameViewController.h; sourceTree = "<group>"; };
 		69FF27BD13F3D20400AA35E6 /* NimGameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NimGameViewController.m; sourceTree = "<group>"; };
 		69FF27C013F3D20400AA35E6 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/NimGameViewController.xib; sourceTree = "<group>"; };
+		DBCC365615DA1C32003E6AB7 /* coin_avers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coin_avers.png; sourceTree = "<group>"; };
+		DBCC365715DA1C32003E6AB7 /* coin_revers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coin_revers.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,12 +100,22 @@
 		69FF27AE13F3D20400AA35E6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DBCC365515DA1C32003E6AB7 /* Resources */,
 				69FF27AF13F3D20400AA35E6 /* NimGame-Info.plist */,
 				69FF27B013F3D20400AA35E6 /* InfoPlist.strings */,
 				69FF27B313F3D20400AA35E6 /* NimGame-Prefix.pch */,
 				69FF27B413F3D20400AA35E6 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DBCC365515DA1C32003E6AB7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DBCC365615DA1C32003E6AB7 /* coin_avers.png */,
+				DBCC365715DA1C32003E6AB7 /* coin_revers.png */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -155,6 +169,8 @@
 				69FF27BB13F3D20400AA35E6 /* MainWindow.xib in Resources */,
 				69FF27C113F3D20400AA35E6 /* NimGameViewController.xib in Resources */,
 				69FCF57313F3FC4200332B23 /* Bildschirmfoto 2011-08-11 um 14.00.10.png in Resources */,
+				DBCC365815DA1C32003E6AB7 /* coin_avers.png in Resources */,
+				DBCC365915DA1C32003E6AB7 /* coin_revers.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
