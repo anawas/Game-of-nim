@@ -104,6 +104,9 @@
     self.currentPlayerTakesLabel.text = [[NSNumber numberWithInteger:coinsTaken] stringValue];    
     self.numOfCoinsLabel.text = [[NSNumber numberWithInteger:numOfCoins] stringValue];
     
+    if (numOfCoins == 0) {
+        [self updateGame];
+    }
 }
 
 - (IBAction)playerFinished:(id)sender {
