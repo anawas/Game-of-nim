@@ -9,7 +9,7 @@
 #import "NimGameViewController.h"
 
 #define DIVISOR 4
-#define OUTOFSCREEN 900.0F
+#define OUTOFSCREEN 400.0F
 
 @implementation NimGameViewController
 @synthesize currentPlayer;
@@ -82,7 +82,6 @@
 }
 
 - (IBAction)handleSwipeGesture:(UISwipeGestureRecognizer *)sender {
-    NSString *message;
     
     if (!humanMove) {
         [self displayMessage:@"Sie sind nicht an der Reihe"];
@@ -92,62 +91,20 @@
     if (coinsTaken == 3) {
         [self displayMessage:@"Sie können nur 1, 2 oder 3 Münzen nehmen!"];
         return;
-        
     }
     
-    NSArray *coinSubviews = [coinView subviews];
+    [self sweepOffCoin:sender.direction];
     
-    switch(sender.direction) {
-        case UISwipeGestureRecognizerDirectionRight:
-            message = @"Swiped right";
-            for (UIImageView *coin in coinSubviews) {
-                if (coin.tag == numOfCoins) {
-                    coin.center = CGPointMake(OUTOFSCREEN, 0.0f);
-                    [coin removeFromSuperview];
-                    break;
-                }
-            }
-            
-            break;
-        case  UISwipeGestureRecognizerDirectionLeft:
-            message = @"Swiped left";
-            for (UIImageView *coin in coinSubviews) {
-                if (coin.tag == numOfCoins) {
-                    coin.center = CGPointMake(-OUTOFSCREEN, 0.0f);
-                    [coin removeFromSuperview];
-                    break;
-                }
-            }
-            break;
-        case UISwipeGestureRecognizerDirectionUp:
-            message = @"Swiped up";
-            for (UIImageView *coin in coinSubviews) {
-                if (coin.tag == numOfCoins) {
-                    coin.center = CGPointMake(-OUTOFSCREEN, 0.0f);
-                    [coin removeFromSuperview];
-                    break;
-                }
-            }
-        case UISwipeGestureRecognizerDirectionDown:
-            message = @"Swiped down";
-            for (UIImageView *coin in coinSubviews) {
-                if (coin.tag == numOfCoins) {
-                    coin.center = CGPointMake(-OUTOFSCREEN, 0.0f);
-                    [coin removeFromSuperview];
-                    break;
-                }
-            }
-            break;
-    }
-    
-    ++coinsTaken;
-    --numOfCoins;
     self.currentPlayerTakesLabel.text = [[NSNumber numberWithInteger:coinsTaken] stringValue];    
     self.numOfCoinsLabel.text = [[NSNumber numberWithInteger:numOfCoins] stringValue];
     
     if (coinsTaken == 3) {
         [self updateGame];
     }
+}
+
+- (IBAction)playerFinished:(id)sender {
+    [self updateGame];
 }
 
 #pragma mark - View lifecycle
@@ -157,7 +114,7 @@
 {
     [super viewDidLoad];
     
-    coinView = [[UIView alloc] initWithFrame:CGRectMake(0, 50, 200, 200)];
+    coinView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
     coinAversFilename = [[NSBundle mainBundle]pathForResource:@"coin_avers" ofType:@"png"];
     [coinAversFilename retain];
     coinReversFilename = [[NSBundle mainBundle]pathForResource:@"coin_revers" ofType:@"png"];
@@ -212,6 +169,7 @@
     }
     
     if (humanMove) {
+        coinsTaken = 0;
         [self computerMove];
     }
     coinsTaken = 0;
@@ -220,21 +178,30 @@
 
 - (void)computerMove {
     
+    int takeCoins;
+    
     if ((numOfCoins % DIVISOR) == 0) {
-        coinsTaken = (random() % (DIVISOR-1)) + 1;
-        if (coinsTaken == 0) {
+        takeCoins = (random() % (DIVISOR-1)) + 1;
+        if (takeCoins == 0) {
             NSLog(@"coinsTaken == 0 !!!!!!");
         }
     } else {
-        coinsTaken = numOfCoins % DIVISOR;
+        takeCoins = numOfCoins % DIVISOR;
     } 
        
-    numOfCoins -= coinsTaken;
     self.currentPlayer.text = @"iPod nimmt";
-    self.currentPlayerTakesLabel.text = [[NSNumber numberWithInteger:coinsTaken] stringValue];
+
+    while (takeCoins > 0) {
+        [self sweepOffCoin:(1 << rand()%3)];
+        [NSThread sleepForTimeInterval:1.0];
+        takeCoins--;
+    }
+                            
     humanMove = NO;
     [self updateGame];
     humanMove = YES;
+    self.currentPlayer.text = @"Sie nehmen";
+
 }
 
 
@@ -245,5 +212,63 @@
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil, nil];
     [alert show];
+}
+
+- (void)sweepOffCoin:(UISwipeGestureRecognizerDirection)direction {
+
+    NSArray *coinSubviews = [coinView subviews];
+    direction = 1;
+    switch(direction) {
+        case UISwipeGestureRecognizerDirectionRight:
+            for (UIImageView *coin in coinSubviews) {
+                if (coin.tag == numOfCoins) {
+                    [UIImageView animateWithDuration:1.0 
+                                          animations:^{
+                                              coin.center = CGPointMake(OUTOFSCREEN, 0.0f);}
+                                          completion:^(BOOL finished){[coin removeFromSuperview];}];
+                    break;
+                }
+            }
+            
+            break;
+        case  UISwipeGestureRecognizerDirectionLeft:
+            for (UIImageView *coin in coinSubviews) {
+                if (coin.tag == numOfCoins) {
+                    [UIImageView animateWithDuration:1.0 
+                                          animations:^{
+                                              coin.center = CGPointMake(-OUTOFSCREEN, 0.0f);}
+                                          completion:^(BOOL finished){[coin removeFromSuperview];}];
+                    break;
+                }
+            }
+            break;
+        case UISwipeGestureRecognizerDirectionUp:
+            for (UIImageView *coin in coinSubviews) {
+                if (coin.tag == numOfCoins) {
+                    [UIImageView animateWithDuration:1.0 
+                                          animations:^{
+                                              coin.center = CGPointMake(0.0, OUTOFSCREEN);}
+                                          completion:^(BOOL finished){[coin removeFromSuperview];}];
+                    break;
+                }
+            }
+            break;
+        case UISwipeGestureRecognizerDirectionDown:
+            for (UIImageView *coin in coinSubviews) {
+                if (coin.tag == numOfCoins) {
+                    [UIImageView animateWithDuration:1.0 
+                                          animations:^{
+                                              coin.center = CGPointMake(0.0, OUTOFSCREEN);}
+                                          completion:^(BOOL finished){[coin removeFromSuperview];}];
+                    break;
+                }
+            }
+            break;
+    }
+    
+    ++coinsTaken;
+    self.currentPlayerTakesLabel.text = [[NSNumber numberWithInteger:coinsTaken] stringValue];
+
+    --numOfCoins;
 }
 @end

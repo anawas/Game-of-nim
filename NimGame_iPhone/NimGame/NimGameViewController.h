@@ -31,7 +31,9 @@
 - (IBAction)playerSelectedCoins:(id)sender;
 - (IBAction)resetGame:(id)sender;
 - (IBAction)handleSwipeGesture:(UISwipeGestureRecognizer *)sender;
+- (IBAction)playerFinished:(id)sender;
 - (void)computerMove;
 - (void)updateGame;
 - (void)displayMessage:(NSString *)message;
+- (void)sweepOffCoin:(UISwipeGestureRecognizerDirection)direction;
 @end
