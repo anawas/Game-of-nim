@@ -4,16 +4,29 @@
    version = "1.0">
    <FileBreakpoints>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "NimGame/NimGameViewController.m"
-         timestampString = "366622941.907289"
+         timestampString = "366717090.204224"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "149"
-         endingLineNumber = "149"
-         landmarkName = "-handleSwipeGesture:"
+         startingLineNumber = "184"
+         endingLineNumber = "184"
+         landmarkName = "-computerMove"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "NimGame/NimGameViewController.m"
+         timestampString = "366717090.204224"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "218"
+         endingLineNumber = "218"
+         landmarkName = "-sweepOffCoin:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
