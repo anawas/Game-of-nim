@@ -30,7 +30,6 @@
 
 - (IBAction)resetGame:(id)sender;
 - (IBAction)handleSwipeGesture:(UISwipeGestureRecognizer *)sender;
-- (IBAction)playerFinished:(id)sender;
 - (void)computerMove;
 - (void)updateGame;
 - (void)displayMessage:(NSString *)message;

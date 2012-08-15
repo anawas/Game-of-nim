@@ -39,8 +39,6 @@
 {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
 }
 
 - (IBAction)resetGame:(id)sender {
@@ -63,17 +61,19 @@
     
     for (int i = 0; i < numOfCoins; i++) {
         UIImageView *coin;
-        if (rand() % 2) {
-            coin = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:coinAversFilename]];
-        } else {
-            coin = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:coinReversFilename]];        
-        }
         
-        [self rotateCoinRandomly:coin];
+        /** 
+         ** Schön wäre, wenn die Münze zwei Seiten hätte...
+         **/
+        coin = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:coinAversFilename]];
 
         coin.tag = i+1;
         CGRect coinSize = [coin frame];
         CGPoint ulc = CGPointMake(viewFrame.size.width/2 + rand()%100, viewFrame.size.height/2+rand()%100);
+
+        /** 
+         ** Etwas weniger Ordnung im Stapel bitte...
+         **/
 
         ulc.x -= coinSize.size.width/2.0f;
         ulc.y -= coinSize.size.height/2.0f;
@@ -94,23 +94,18 @@
         return;
     }
     
-    if (coinsTaken == 3) {
-        [self displayMessage:@"Sie können nur 1, 2 oder 3 Münzen nehmen!"];
-        return;
-    }
+    /**
+     ** Was, wenn der Spieler mehr als 3 Münzen nimmt?
+     **/
     
     [self sweepOffCoin:sender.direction];
     
     self.currentPlayerTakesLabel.text = [[NSNumber numberWithInteger:coinsTaken] stringValue];    
     self.numOfCoinsLabel.text = [[NSNumber numberWithInteger:numOfCoins] stringValue];
     
-    if (numOfCoins == 0) {
-        [self updateGame];
-    }
-}
-
-- (IBAction)playerFinished:(id)sender {
-    [self updateGame];
+    /**
+     ** Wenn der Spieler die letzte Münze nimmt soll das Spiel zu Ende sein.
+     **/
 }
 
 #pragma mark - View lifecycle
@@ -177,26 +172,9 @@
 }
 
 - (void)computerMove {
-    
-    int takeCoins;
-    
-    if ((numOfCoins % DIVISOR) == 0) {
-        takeCoins = (random() % (DIVISOR-1)) + 1;
-        if (takeCoins == 0) {
-            NSLog(@"coinsTaken == 0 !!!!!!");
-        }
-    } else {
-        takeCoins = numOfCoins % DIVISOR;
-    } 
-       
-
-    humanMove = NO;
-    while (takeCoins > 0) {
-        [self sweepOffCoin:(1 << rand()%(DIVISOR -1))];
-        takeCoins--;
-    }
-                            
-    [self updateGame];
+    /**
+     ** Nun ist der Computer an der Reihe. Was muss er tun??
+     **/
 }
 
 
