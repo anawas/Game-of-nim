@@ -47,7 +47,7 @@
     
     srandom(time(NULL));
     coinsTaken = 0;
-    numOfCoins = (rand() % 15) + 20; 
+    numOfCoins = (rand() % 10) + 10; 
     self.numOfCoinsLabel.text = [NSString stringWithFormat:@"%d", numOfCoins];
     self.currentPlayerTakesLabel.text = @"0";
     
@@ -104,9 +104,6 @@
     self.currentPlayerTakesLabel.text = [[NSNumber numberWithInteger:coinsTaken] stringValue];    
     self.numOfCoinsLabel.text = [[NSNumber numberWithInteger:numOfCoins] stringValue];
     
-//    if (coinsTaken == 3) {
-//        [self updateGame];
-//    }
 }
 
 - (IBAction)playerFinished:(id)sender {
@@ -120,7 +117,7 @@
 {
     [super viewDidLoad];
     
-    coinView = [[UIView alloc] initWithFrame:CGRectMake(20, 20, 200, 200)];
+    coinView = [[UIView alloc] initWithFrame:CGRectMake(50, 50, 200, 200)];
     coinAversFilename = [[NSBundle mainBundle]pathForResource:@"coin_avers" ofType:@"png"];
     [coinAversFilename retain];
     coinReversFilename = [[NSBundle mainBundle]pathForResource:@"coin_revers" ofType:@"png"];
@@ -144,7 +141,6 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
@@ -193,8 +189,7 @@
 
     humanMove = NO;
     while (takeCoins > 0) {
-        [self sweepOffCoin:(1 << rand()%3)];
-        [NSThread sleepForTimeInterval:1.0];
+        [self sweepOffCoin:(1 << rand()%(DIVISOR -1))];
         takeCoins--;
     }
                             
@@ -280,6 +275,7 @@
     float angle;
     CGAffineTransform _transform;
     
+    _transform = CGAffineTransformIdentity;
     angle = rand()%360;
     angle *= 0.018;
     _transform.a = sinf(angle);
