@@ -28,7 +28,6 @@
 @property (retain, nonatomic) IBOutlet UISwipeGestureRecognizer *swipe_up_GestureRecognizer;
 @property (retain, nonatomic) IBOutlet UISwipeGestureRecognizer *swipe_down_GestureRecognizer;
 
-- (IBAction)playerSelectedCoins:(id)sender;
 - (IBAction)resetGame:(id)sender;
 - (IBAction)handleSwipeGesture:(UISwipeGestureRecognizer *)sender;
 - (IBAction)playerFinished:(id)sender;
@@ -36,4 +35,6 @@
 - (void)updateGame;
 - (void)displayMessage:(NSString *)message;
 - (void)sweepOffCoin:(UISwipeGestureRecognizerDirection)direction;
+
+- (void)rotateCoinRandomly:(UIImageView *)coinImage;
 @end

@@ -10,6 +10,7 @@
 
 #define DIVISOR 4
 #define OUTOFSCREEN 400.0F
+#define ANIM_SPEED 0.5
 
 @implementation NimGameViewController
 @synthesize currentPlayer;
@@ -43,9 +44,10 @@
 }
 
 - (IBAction)resetGame:(id)sender {
+    
     srandom(time(NULL));
     coinsTaken = 0;
-    numOfCoins = (rand() % 15) + 10; 
+    numOfCoins = (rand() % 15) + 20; 
     self.numOfCoinsLabel.text = [NSString stringWithFormat:@"%d", numOfCoins];
     self.currentPlayerTakesLabel.text = @"0";
     
@@ -66,10 +68,13 @@
         } else {
             coin = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:coinReversFilename]];        
         }
+        
+        [self rotateCoinRandomly:coin];
+
         coin.tag = i+1;
         CGRect coinSize = [coin frame];
         CGPoint ulc = CGPointMake(viewFrame.size.width/2 + rand()%100, viewFrame.size.height/2+rand()%100);
-        
+
         ulc.x -= coinSize.size.width/2.0f;
         ulc.y -= coinSize.size.height/2.0f;
         [coin setCenter:ulc];
@@ -79,6 +84,7 @@
     [[self view] addSubview:coinView];
     [coinView release];
     
+    self.currentPlayer.text = [NSString stringWithString:@"Sie nehmen"];
 }
 
 - (IBAction)handleSwipeGesture:(UISwipeGestureRecognizer *)sender {
@@ -98,9 +104,9 @@
     self.currentPlayerTakesLabel.text = [[NSNumber numberWithInteger:coinsTaken] stringValue];    
     self.numOfCoinsLabel.text = [[NSNumber numberWithInteger:numOfCoins] stringValue];
     
-    if (coinsTaken == 3) {
-        [self updateGame];
-    }
+//    if (coinsTaken == 3) {
+//        [self updateGame];
+//    }
 }
 
 - (IBAction)playerFinished:(id)sender {
@@ -114,12 +120,12 @@
 {
     [super viewDidLoad];
     
-    coinView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
+    coinView = [[UIView alloc] initWithFrame:CGRectMake(20, 20, 200, 200)];
     coinAversFilename = [[NSBundle mainBundle]pathForResource:@"coin_avers" ofType:@"png"];
     [coinAversFilename retain];
     coinReversFilename = [[NSBundle mainBundle]pathForResource:@"coin_revers" ofType:@"png"];
     [coinReversFilename retain];
-    currentPlayer.text = @"Sie nehmen";
+    self.currentPlayer.text = @"Sie nehmen";
     [self resetGame:self];
     humanMove = YES;
 }
@@ -140,12 +146,6 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-- (IBAction)playerSelectedCoins:(id)sender {
-    coinsTaken = [sender selectedSegmentIndex]+1;
-    humanMove = YES;
-    [self updateGame];
 }
 
 - (void)updateGame {
@@ -171,6 +171,7 @@
     if (humanMove) {
         coinsTaken = 0;
         [self computerMove];
+        humanMove = YES;
     }
     coinsTaken = 0;
     
@@ -189,19 +190,15 @@
         takeCoins = numOfCoins % DIVISOR;
     } 
        
-    self.currentPlayer.text = @"iPod nimmt";
 
+    humanMove = NO;
     while (takeCoins > 0) {
         [self sweepOffCoin:(1 << rand()%3)];
         [NSThread sleepForTimeInterval:1.0];
         takeCoins--;
     }
                             
-    humanMove = NO;
     [self updateGame];
-    humanMove = YES;
-    self.currentPlayer.text = @"Sie nehmen";
-
 }
 
 
@@ -216,15 +213,22 @@
 
 - (void)sweepOffCoin:(UISwipeGestureRecognizerDirection)direction {
 
+    CGRect viewFrame = self.view.frame;
+    
+    if (humanMove) {
+        self.currentPlayer.text = [NSString stringWithString:@"Sie nehmen"];
+    } else {
+        self.currentPlayer.text = [NSString stringWithString:@"iPod nimmt"];
+    }
     NSArray *coinSubviews = [coinView subviews];
-    direction = 1;
+    //direction = 1;
     switch(direction) {
         case UISwipeGestureRecognizerDirectionRight:
             for (UIImageView *coin in coinSubviews) {
                 if (coin.tag == numOfCoins) {
-                    [UIImageView animateWithDuration:1.0 
+                    [UIImageView animateWithDuration:ANIM_SPEED 
                                           animations:^{
-                                              coin.center = CGPointMake(OUTOFSCREEN, 0.0f);}
+                                              coin.center = CGPointMake(OUTOFSCREEN, viewFrame.size.height/2);}
                                           completion:^(BOOL finished){[coin removeFromSuperview];}];
                     break;
                 }
@@ -234,9 +238,9 @@
         case  UISwipeGestureRecognizerDirectionLeft:
             for (UIImageView *coin in coinSubviews) {
                 if (coin.tag == numOfCoins) {
-                    [UIImageView animateWithDuration:1.0 
+                    [UIImageView animateWithDuration:ANIM_SPEED 
                                           animations:^{
-                                              coin.center = CGPointMake(-OUTOFSCREEN, 0.0f);}
+                                              coin.center = CGPointMake(-OUTOFSCREEN, viewFrame.size.height/2);}
                                           completion:^(BOOL finished){[coin removeFromSuperview];}];
                     break;
                 }
@@ -245,9 +249,9 @@
         case UISwipeGestureRecognizerDirectionUp:
             for (UIImageView *coin in coinSubviews) {
                 if (coin.tag == numOfCoins) {
-                    [UIImageView animateWithDuration:1.0 
+                    [UIImageView animateWithDuration:ANIM_SPEED 
                                           animations:^{
-                                              coin.center = CGPointMake(0.0, OUTOFSCREEN);}
+                                              coin.center = CGPointMake(viewFrame.size.width/2, -OUTOFSCREEN);}
                                           completion:^(BOOL finished){[coin removeFromSuperview];}];
                     break;
                 }
@@ -256,9 +260,9 @@
         case UISwipeGestureRecognizerDirectionDown:
             for (UIImageView *coin in coinSubviews) {
                 if (coin.tag == numOfCoins) {
-                    [UIImageView animateWithDuration:1.0 
+                    [UIImageView animateWithDuration:ANIM_SPEED 
                                           animations:^{
-                                              coin.center = CGPointMake(0.0, OUTOFSCREEN);}
+                                              coin.center = CGPointMake(viewFrame.size.width/2, 3*OUTOFSCREEN);}
                                           completion:^(BOOL finished){[coin removeFromSuperview];}];
                     break;
                 }
@@ -271,4 +275,18 @@
 
     --numOfCoins;
 }
+
+- (void)rotateCoinRandomly:(UIImageView *)coinImage {
+    float angle;
+    CGAffineTransform _transform;
+    
+    angle = rand()%360;
+    angle *= 0.018;
+    _transform.a = sinf(angle);
+    _transform.b = cosf(angle);
+    _transform.c = -_transform.b;
+    _transform.d = _transform.a;
+    coinImage.transform = _transform;
+}
+
 @end
