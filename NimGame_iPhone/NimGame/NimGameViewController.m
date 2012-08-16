@@ -94,8 +94,8 @@
         return;
     }
     
-    if (coinsTaken == 3) {
-        [self displayMessage:@"Sie können nur 1, 2 oder 3 Münzen nehmen!"];
+    if (coinsTaken == 2) {
+        [self updateGame];
         return;
     }
     
@@ -110,6 +110,10 @@
 }
 
 - (IBAction)playerFinished:(id)sender {
+    if (coinsTaken == 0) {
+        [self displayMessage:@"Sie müssen mind. 1 Münze nehmen."];
+        return;
+    }
     [self updateGame];
 }
 
