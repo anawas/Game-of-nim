@@ -43,7 +43,7 @@
 					<object class="IBUILabel" id="491302738">
 						<reference key="NSNextResponder" ref="774585933"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{259, 16}, {41, 26}}</string>
+						<string key="NSFrame">{{128, 58}, {41, 26}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="288911017"/>
@@ -76,7 +76,7 @@
 					<object class="IBUILabel" id="288911017">
 						<reference key="NSNextResponder" ref="774585933"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 60}, {136, 29}}</string>
+						<string key="NSFrame">{{20, 296}, {271, 29}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="984212086"/>
@@ -85,7 +85,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">iPod nimmt</string>
+						<string key="IBUIText">Anzeigen, wer am Zug ist</string>
 						<reference key="IBUITextColor" ref="632319249"/>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">1</int>
@@ -105,16 +105,15 @@
 					<object class="IBUILabel" id="984212086">
 						<reference key="NSNextResponder" ref="774585933"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{240, 60}, {79, 29}}</string>
+						<string key="NSFrame">{{63, 226}, {157, 29}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">0</string>
+						<string key="IBUIText">wegg. Münzen</string>
 						<reference key="IBUITextColor" ref="632319249"/>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">1</int>
@@ -126,7 +125,7 @@
 					<object class="IBUILabel" id="700239786">
 						<reference key="NSNextResponder" ref="774585933"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 5}, {124, 47}}</string>
+						<string key="NSFrame">{{45, 92}, {124, 47}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="491302738"/>
@@ -338,10 +337,10 @@
 						<reference key="object" ref="774585933"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="491302738"/>
-							<reference ref="700239786"/>
 							<reference ref="288911017"/>
 							<reference ref="984212086"/>
+							<reference ref="700239786"/>
+							<reference ref="491302738"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
