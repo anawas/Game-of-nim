@@ -21,6 +21,9 @@
 
 @synthesize numOfCoinsLabel, currentPlayerTakesLabel, coinView;
 
+/**
+ ** Die App wurde beendet. Nun müssen wir aufräumen.
+ **/
 - (void)dealloc
 {
     numOfCoinsLabel = nil;
@@ -35,12 +38,22 @@
     [super dealloc];
 }
 
+/**
+ ** Das Betriebssystem meldet uns, dass nur noch wenig Speicher zu Verfügung
+ ** steht und bittet uns aufzuräumen. Da können wir aber nichts tun.
+ **/
 - (void)didReceiveMemoryWarning
 {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
 }
 
+/**
+ ** Damit setzen wir das Spiel zurück. Wir verteilen die Münzen neu und löschen
+ ** den Speilstand.
+ ** Diese Methode kann immer aufgerufen werden. Wir könnten uns überlegen, ob 
+ ** wir das Zurücksetzen nur am Spielende gestatten wollen.  
+ **/
 - (IBAction)resetGame:(id)sender {
     
     srandom(time(NULL));
@@ -87,6 +100,10 @@
     self.currentPlayer.text = [NSString stringWithString:@"Sie nehmen"];
 }
 
+/**
+ ** Reagiert, wenn der Spieler das Display berührt. Sucht eine Swipe-Bewegung
+ ** (ein Wischen) und bestimmt die Richtung.
+ **/
 - (IBAction)handleSwipeGesture:(UISwipeGestureRecognizer *)sender {
     
     if (!humanMove) {
@@ -110,8 +127,11 @@
 
 #pragma mark - View lifecycle
 
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad
+/**
+ ** Aufgerufen, wenn die App geladen wurde.
+ ** Hier müssen noch die Münzen dargestellt werden...
+ **/
+ - (void)viewDidLoad
 {
     [super viewDidLoad];
     
@@ -121,10 +141,14 @@
     coinReversFilename = [[NSBundle mainBundle]pathForResource:@"coin_revers" ofType:@"png"];
     [coinReversFilename retain];
     self.currentPlayer.text = @"Sie nehmen";
-    [self resetGame:self];
+
     humanMove = YES;
 }
 
+/**
+ ** Wird aufgerufen, wenn die App beendet wird. Wir müssen alles löschen
+ ** was wir zuvor definiert haben.
+ **/
 - (void)viewDidUnload
 {
     [self setSwipe_right_GestureRecognizer:nil];
@@ -137,15 +161,27 @@
     // e.g. self.myOutlet = nil;
 }
 
+/**
+ ** Die Anzeige unseres Spiels unterstützt nur den Portrait-Modus. Daher unterbinden
+ ** wir das Drehen des Displays.
+ **/
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+/**
+ ** Diese Methode wird nach jedem Zug vom Spieler oder Computer aufgerufen.
+ ** Sie prüft, ob schon jemand gewonnen hat und falls ja, gibt den Sieger aus.
+ ** Sie macht den Zug für den Computer falls der Mensch soeben gespielt hat.
+ **/
 - (void)updateGame {
     self.numOfCoinsLabel.text = [NSString stringWithFormat:@"%d", numOfCoins];
     
+    // Hat schon jemand gewonnen?
     if (numOfCoins == 0) {
+        
+        // ja, wer ist es?
         NSString *winner;
         if (humanMove) {  
             winner = @"Sie gewinnen";
@@ -153,6 +189,7 @@
             winner = @"iPod gewinnt";
         }
         
+        // Den Gewinner ausgeben.
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Spielende"
                                                         message:[NSString stringWithFormat:@"%@ das Spiel!", winner]
                                                        delegate:nil                                              
@@ -162,7 +199,12 @@
         return;
     }
     
+    // nein, es gibt noch keinen Sieger
+    
+    // Hat der Mensch den letzten Zug gemacht?
     if (humanMove) {
+        
+        // ja, jetzt ist der Computer dran
         coinsTaken = 0;
         [self computerMove];
         humanMove = YES;
@@ -171,13 +213,18 @@
     
 }
 
+
+/**
+ ** Nun ist der Computer an der Reihe. Was muss er tun??
+ **/
 - (void)computerMove {
-    /**
-     ** Nun ist der Computer an der Reihe. Was muss er tun??
-     **/
+    // was tun???
 }
 
 
+/**
+ ** Gibt eine Fehlermeldung auf dem Display aus.
+ **/
 - (void)displayMessage:(NSString *)message {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
                                                     message:message
@@ -187,6 +234,13 @@
     [alert show];
 }
 
+/**
+ ** Diese Methode sieht kompliziert aus. Sie wird einerseits aufgerufen, wenn 
+ ** der Spieler über das Display streicht. Aber auch, um das Wegnehmen beim
+ ** Computerzug zu simulieren.
+ ** In der Methode wird die oberste Münze aus dem Bild bewegt
+ ** und zwar in die Richtung, in welche der Spieler gewischt hat. 
+ **/
 - (void)sweepOffCoin:(UISwipeGestureRecognizerDirection)direction {
 
     CGRect viewFrame = self.view.frame;
@@ -196,9 +250,15 @@
     } else {
         self.currentPlayer.text = [NSString stringWithString:@"iPod nimmt"];
     }
+    
+    // Hole den Münzstapel
     NSArray *coinSubviews = [coinView subviews];
-    //direction = 1;
+
+    
+    // In welche Richtung wurde gewischt?
     switch(direction) {
+            
+            // nach rechts
         case UISwipeGestureRecognizerDirectionRight:
             for (UIImageView *coin in coinSubviews) {
                 if (coin.tag == numOfCoins) {
@@ -211,6 +271,8 @@
             }
             
             break;
+            
+            // nach links
         case  UISwipeGestureRecognizerDirectionLeft:
             for (UIImageView *coin in coinSubviews) {
                 if (coin.tag == numOfCoins) {
@@ -222,6 +284,8 @@
                 }
             }
             break;
+            
+            // nach oben
         case UISwipeGestureRecognizerDirectionUp:
             for (UIImageView *coin in coinSubviews) {
                 if (coin.tag == numOfCoins) {
@@ -233,6 +297,8 @@
                 }
             }
             break;
+            
+            // nach unten
         case UISwipeGestureRecognizerDirectionDown:
             for (UIImageView *coin in coinSubviews) {
                 if (coin.tag == numOfCoins) {
@@ -246,12 +312,17 @@
             break;
     }
     
+    // aktualisiere die Anzahl Münzen
     ++coinsTaken;
     self.currentPlayerTakesLabel.text = [[NSNumber numberWithInteger:coinsTaken] stringValue];
 
     --numOfCoins;
 }
 
+/**
+ ** Um dem Spiel ein realistischeres Aussehen zu geben drehen wir die Bilder der
+ ** Münzen im einen zufälligen Winkel.
+ **/
 - (void)rotateCoinRandomly:(UIImageView *)coinImage {
     float angle;
     CGAffineTransform _transform;
