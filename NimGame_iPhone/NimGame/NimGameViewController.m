@@ -193,7 +193,7 @@
         takeCoins = numOfCoins % DIVISOR;
     } 
        
-
+    
     humanMove = NO;
     while (takeCoins > 0) {
         [self sweepOffCoin:(1 << rand()%(DIVISOR -1))];

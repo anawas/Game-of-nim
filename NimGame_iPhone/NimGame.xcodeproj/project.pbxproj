@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D6A04D7180737E6009A84F0 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D6A04D6180737E6009A84F0 /* AVFoundation.framework */; };
 		69FCF57313F3FC4200332B23 /* Bildschirmfoto 2011-08-11 um 14.00.10.png in Resources */ = {isa = PBXBuildFile; fileRef = 69FCF57213F3FC4200332B23 /* Bildschirmfoto 2011-08-11 um 14.00.10.png */; };
 		69FF27A813F3D20400AA35E6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69FF27A713F3D20400AA35E6 /* UIKit.framework */; };
 		69FF27AA13F3D20400AA35E6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69FF27A913F3D20400AA35E6 /* Foundation.framework */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D6A04D6180737E6009A84F0 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		69FCF57213F3FC4200332B23 /* Bildschirmfoto 2011-08-11 um 14.00.10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Bildschirmfoto 2011-08-11 um 14.00.10.png"; sourceTree = "<group>"; };
 		69FF27A313F3D20400AA35E6 /* NimGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NimGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		69FF27A713F3D20400AA35E6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -46,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D6A04D7180737E6009A84F0 /* AVFoundation.framework in Frameworks */,
 				69FF27A813F3D20400AA35E6 /* UIKit.framework in Frameworks */,
 				69FF27AA13F3D20400AA35E6 /* Foundation.framework in Frameworks */,
 				69FF27AC13F3D20400AA35E6 /* CoreGraphics.framework in Frameworks */,
@@ -76,6 +79,7 @@
 		69FF27A613F3D20400AA35E6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2D6A04D6180737E6009A84F0 /* AVFoundation.framework */,
 				69FF27A713F3D20400AA35E6 /* UIKit.framework */,
 				69FF27A913F3D20400AA35E6 /* Foundation.framework */,
 				69FF27AB13F3D20400AA35E6 /* CoreGraphics.framework */,
@@ -145,6 +149,11 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0500;
+				TargetAttributes = {
+					69FF27A213F3D20400AA35E6 = {
+						DevelopmentTeam = QKDFTK8B25;
+					};
+				};
 			};
 			buildConfigurationList = 69FF279D13F3D20400AA35E6 /* Build configuration list for PBXProject "NimGame" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -263,7 +272,7 @@
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "NimGame/NimGame-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -283,7 +292,7 @@
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "NimGame/NimGame-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

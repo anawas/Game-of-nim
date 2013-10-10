@@ -7,8 +7,8 @@
 //
 
 #import "NimGameAppDelegate.h"
-
 #import "NimGameViewController.h"
+#import <AVFoundation/AVFoundation.h>
 
 @implementation NimGameAppDelegate
 
@@ -23,6 +23,23 @@
      
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
+    NSArray *voices = [AVSpeechSynthesisVoice speechVoices];
+    NSLog(@"%@", voices);
+    AVSpeechSynthesisVoice *currVoice = [AVSpeechSynthesisVoice voiceWithLanguage:@"no-NO"];
+    if (currVoice == nil) {
+        NSLog(@"ERROR -- Could not find appropriate voice!");
+    } else {
+        NSLog(@"selected voice : %@", currVoice);
+    }
+    
+    AVSpeechUtterance *utt = [AVSpeechUtterance speechUtteranceWithString:@"Jeg heter Olaf!"];
+    utt.voice = currVoice;
+    utt.rate = AVSpeechUtteranceDefaultSpeechRate - 0.3;
+    
+    AVSpeechSynthesizer *synth = [[AVSpeechSynthesizer alloc] init];
+    [synth speakUtterance:utt];
+    [synth release];
+    
     return YES;
 }
 
