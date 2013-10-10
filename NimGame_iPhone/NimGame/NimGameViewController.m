@@ -84,7 +84,7 @@
     [[self view] addSubview:coinView];
     [coinView release];
     
-    self.currentPlayer.text = [NSString stringWithString:@"Sie nehmen"];
+    self.currentPlayer.text = @"Sie nehmen";
 }
 
 - (IBAction)handleSwipeGesture:(UISwipeGestureRecognizer *)sender {
@@ -218,9 +218,9 @@
     CGRect viewFrame = self.view.frame;
     
     if (humanMove) {
-        self.currentPlayer.text = [NSString stringWithString:@"Sie nehmen"];
+        self.currentPlayer.text = @"Sie nehmen";
     } else {
-        self.currentPlayer.text = [NSString stringWithString:@"iPod nimmt"];
+        self.currentPlayer.text = @"iPod nimmt";
     }
     NSArray *coinSubviews = [coinView subviews];
     //direction = 1;
