@@ -18,8 +18,9 @@
 @synthesize swipe_left_GestureRecognizer;
 @synthesize swipe_up_GestureRecognizer;
 @synthesize swipe_down_GestureRecognizer;
-
 @synthesize numOfCoinsLabel, currentPlayerTakesLabel, coinView;
+
+@synthesize speechEnabled;
 
 - (void)dealloc
 {
@@ -132,6 +133,19 @@
     self.currentPlayer.text = @"Sie nehmen";
     [self resetGame:self];
     humanMove = YES;
+    
+    // Check if there is a german voice installed
+    AVSpeechSynthesisVoice *currVoice = [AVSpeechSynthesisVoice voiceWithLanguage:@"de-DE"];
+    if (currVoice == nil) {
+        self.speechEnabled = NO;
+    } else {
+        self.speechEnabled = YES;
+    }
+    
+    synthesizer = nil;
+    if (self.speechEnabled == YES) {
+        synthesizer = [[AVSpeechSynthesizer alloc] init];
+    }
 }
 
 - (void)viewDidUnload
@@ -141,6 +155,10 @@
     [self setSwipe_up_GestureRecognizer:nil];
     [self setSwipe_down_GestureRecognizer:nil];
     [self setCurrentPlayer:nil];
+    
+    [synthesizer release];
+    synthesizer = nil;
+    
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -192,8 +210,11 @@
     } else {
         takeCoins = numOfCoins % DIVISOR;
     } 
-       
     
+    if (self.speechEnabled == YES) {
+        [self announceComputerMove:takeCoins];
+    }
+
     humanMove = NO;
     while (takeCoins > 0) {
         [self sweepOffCoin:(1 << rand()%(DIVISOR -1))];
@@ -291,5 +312,26 @@
     _transform.d = _transform.a;
     coinImage.transform = _transform;
 }
+
+#pragma mark -
+#pragma mark Speech output
+- (void)announceComputerMove:(int)_coinsTaken {
+    
+    NSString *message;
+    
+    if (_coinsTaken == 1) {
+        message = @"Ich nehme eine Münze.";
+    } else {
+        message = [[NSString alloc] initWithFormat:@"Ich nehme %d Münzen.", _coinsTaken];
+    }
+    
+    AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc] initWithString:message];
+    utterance.voice = [AVSpeechSynthesisVoice voiceWithLanguage:@"de-DE"];
+    utterance.rate = AVSpeechUtteranceDefaultSpeechRate - 0.3;
+    [synthesizer speakUtterance:utterance];
+    [utterance release];
+    [message release];
+}
+
 
 @end
